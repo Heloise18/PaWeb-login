@@ -1,81 +1,41 @@
-import { Platform, StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
-import {useState, useEffect} from 'react';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
-import { app } from '../firebaseConfig'
-import { Link, router } from 'expo-router';
-  import Swal from 'sweetalert2';
+  import { Platform, StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
+  import {useState, useEffect} from 'react';
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+  import { app } from '../firebaseConfig'
+  import { router } from 'expo-router';
+  
+  
+  export default function Login() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
 
+    const auth = getAuth(app)
+    const signIn = async () => {
+        await signInWithEmailAndPassword(auth, email, password)
+        router.navigate('/home')
 
-export default function HomeScreen() {
-
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-
-  const minPassword = 6
-
-  const auth = getAuth(app)
-
-  const signUp = async () =>{
-    if(password.length >= minPassword )
-    {
-      if(password === confirmPassword){
-        try{
-          await createUserWithEmailAndPassword(auth,email,password )
-          Swal.fire({
-          icon:"success",
-          title:"Sucesso",
-          text:"Usuario registrado"
-        });
-          return router.navigate('/login')
-        }
-        catch(e){
-          return Swal.fire({
-          icon:"error",
-          title:"Erro",
-          text:"email já existe!"
-        });
-        }
-      }
-      else{
-        return Swal.fire({
-          icon:"error",
-          title:"Erro",
-          text:"Sebhas não são iguais"
-        });
-      }
-
-    }
-    else{
-      return Swal.fire({
-          icon:"error",
-          title:"Error",
-          text:"Minimo de caracteres para senha é 6"
-        });
-    }
   }
 
-  useEffect(() => {
-    console.log(email, password, confirmPassword)
-  },[email,password,confirmPassword])
 
   return (
     <View style={styles.container }>
       <View style={styles.nav}>
-        <Text style={styles.text}>Cadastro</Text>
+        <Text style={styles.text}>Welcome!</Text>
       </View>
       <View style={styles.body}>
 
         <TextInput placeholder='Email' style={styles.input} onChangeText={(value) => setEmail(value)}></TextInput>
         <TextInput secureTextEntry={true} placeholder='Senha' style={styles.input} onChangeText={(value) => setPassword(value)}></TextInput>
-        <TextInput secureTextEntry={true} placeholder='Confirmar Senha' style={styles.input} onChangeText={(value) => setConfirmPassword(value)}></TextInput>
  
-        <TouchableOpacity style={styles.button} onPress={signUp}>
-          <Text style={styles.textbutton}>Cadastrar</Text>
+        <TouchableOpacity style={styles.button} onPress={signIn}>
+          <Text style={styles.textbutton}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => console.log('botão clicado')}>
-          <Link href={'/login'} style={[styles.textbutton2]}> Já tem conta? </Link>
+
+        <TouchableOpacity style={styles.button2}>
+          <Text style={styles.textbutton2}>Forgot Password?</Text>
         </TouchableOpacity>
+
       </View>
       <View style={styles.final}>
         <TouchableOpacity style={styles.button2}>
@@ -105,7 +65,6 @@ const styles = StyleSheet.create({
     display:"flex",
     justifyContent:"center",
     alignItems:"center"
-
   },
   body:{
     width: "100%",
@@ -177,5 +136,4 @@ const styles = StyleSheet.create({
     fontFamily: 'MyCustomFontName',
     color: "rebeccapurple"
   }
-
 });

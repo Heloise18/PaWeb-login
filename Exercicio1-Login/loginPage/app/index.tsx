@@ -3,8 +3,7 @@ import {useState, useEffect} from 'react';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { app } from '../firebaseConfig'
 import { Link, router } from 'expo-router';
-  import Swal from 'sweetalert2';
-
+import Swal from 'sweetalert2';
 
 export default function HomeScreen() {
 
@@ -13,7 +12,7 @@ export default function HomeScreen() {
   const [confirmPassword, setConfirmPassword] = useState("")
 
   const minPassword = 6
-0
+
   const auth = getAuth(app)
 
   const signUp = async () =>{
@@ -105,11 +104,10 @@ const styles = StyleSheet.create({
     display:"flex",
     justifyContent:"center",
     alignItems:"center"
-
   },
   body:{
     width: "100%",
-    height : "40%",
+    height : "10%",
     display:"flex",
     justifyContent:"center",
     alignItems:"center",

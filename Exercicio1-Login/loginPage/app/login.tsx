@@ -3,7 +3,7 @@
   import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
   import { app } from '../firebaseConfig'
   import { router } from 'expo-router';
-import Swal from 'sweetalert2';
+  import Swal from 'sweetalert2';
   
   
   export default function Login() {

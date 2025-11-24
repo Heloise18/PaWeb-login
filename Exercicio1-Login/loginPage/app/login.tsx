@@ -1,20 +1,27 @@
   import { Platform, StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
   import {useState, useEffect} from 'react';
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+  import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
   import { app } from '../firebaseConfig'
   import { router } from 'expo-router';
+import Swal from 'sweetalert2';
   
   
   export default function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [confirmPassword, setConfirmPassword] = useState("")
 
     const auth = getAuth(app)
     const signIn = async () => {
+    try {
         await signInWithEmailAndPassword(auth, email, password)
         router.navigate('/home')
-
+      } catch (error) {
+        return Swal.fire({
+          icon:"error",
+          title:"Erro",
+          text:"Senha incorreta!"
+        });
+      } 
   }
 
 
@@ -55,7 +62,7 @@
 const styles = StyleSheet.create({
   container : {
     flex:1,
-    backgroundColor: "#EAD6FF", 
+    backgroundColor: "#FAEBD7", 
     justifyContent: "flex-start",
     gap : 20
   },
@@ -84,7 +91,7 @@ const styles = StyleSheet.create({
     flexDirection: "column"
   },
   text : {
-    color: "rebeccapurple",
+    color: "black",
     fontSize: 50,
     fontFamily: 'MyCustomFontName',
   },
@@ -93,15 +100,15 @@ const styles = StyleSheet.create({
     height: "100%"
   },
   input: {
-    backgroundColor: '#F5EBFF',
+    backgroundColor: '#FF7F50',
     width: 300,
     height: 45,
     borderRadius: 10,
     padding: 10,
-    color: '#B4B1BD'
+    color: '#black'
   },
   button : {
-    backgroundColor: "rebeccapurple",
+    backgroundColor: "#FF7F50",
     width: 300,
     height: 45,
     borderRadius: 10,
@@ -129,11 +136,11 @@ const styles = StyleSheet.create({
   textbutton :{
     fontSize: 20,
     fontFamily: 'MyCustomFontName',
-    color: "white"
+    color: "black"
   },
   textbutton2 :{
     fontSize: 15,
     fontFamily: 'MyCustomFontName',
-    color: "rebeccapurple"
+    color: "black"
   }
 });

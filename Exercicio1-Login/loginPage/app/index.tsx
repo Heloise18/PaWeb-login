@@ -13,7 +13,7 @@ export default function HomeScreen() {
   const [confirmPassword, setConfirmPassword] = useState("")
 
   const minPassword = 6
-
+0
   const auth = getAuth(app)
 
   const signUp = async () =>{
@@ -95,7 +95,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container : {
     flex:1,
-    backgroundColor: "#EAD6FF", 
+    backgroundColor: "#FAEBD7", 
     justifyContent: "flex-start",
     gap : 20
   },
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     flexDirection: "column"
   },
   text : {
-    color: "rebeccapurple",
+    color: "Black",
     fontSize: 50,
     fontFamily: 'MyCustomFontName',
   },
@@ -134,15 +134,15 @@ const styles = StyleSheet.create({
     height: "100%"
   },
   input: {
-    backgroundColor: '#F5EBFF',
+    backgroundColor: '#FF7F50',
     width: 300,
     height: 45,
     borderRadius: 10,
     padding: 10,
-    color: '#B4B1BD'
+    color: 'black'
   },
   button : {
-    backgroundColor: "rebeccapurple",
+    backgroundColor: "#FF7F50",
     width: 300,
     height: 45,
     borderRadius: 10,
@@ -170,12 +170,12 @@ const styles = StyleSheet.create({
   textbutton :{
     fontSize: 20,
     fontFamily: 'MyCustomFontName',
-    color: "white"
+    color: "black"
   },
   textbutton2 :{
     fontSize: 15,
     fontFamily: 'MyCustomFontName',
-    color: "rebeccapurple"
+    color: "#FF7F50"
   }
 
 });

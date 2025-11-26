@@ -11,7 +11,7 @@ export default function home() {
 
     const [name, setName] = useState("")
     const [singer, setSinger] = useState("")
-    const [durartion, setDuration] = useState("")
+    const [duration, setDuration] = useState("")
     const [genre, setGenre] = useState("")
     const [country, setCountry] = useState("")
     const [language, setLanguage] = useState("")
@@ -19,15 +19,15 @@ export default function home() {
 
     async function registerMusic() {
         try {
-            const auth = getAuth()
-            const user = auth.currentUser
+            // const auth = getAuth()
+            // const user = auth.currentUser
 
-            if (!user) {
-                console.log("User not log")
-                return
-            }
+            // if (!user) {
+            //     console.log("User not log")
+            //     return
+            // }
 
-            if (!name || !singer || !durartion || !genre || !country || !language || !img) {
+            if (!name || !singer || !duration || !genre || !country || !language || !img) {
                 console.log('error')
                 return
             }
@@ -36,19 +36,19 @@ export default function home() {
             const music = {
                 name,
                 singer,
-                durartion: Number(),
+                duration: Number(),
                 genre,
                 country,
                 language,
                 img,
-                userId: user.uid
+                // userId: user.uid
             }
             await addDoc(collection(db, 'music'), music)
             console.log("Música cadastrada")
 
         } catch (e) {
             console.log("Erro ao cadastrar", e)
-        }
+        } 
     }
 
     return (
@@ -66,12 +66,12 @@ export default function home() {
                 <TextInput placeholder='Language' style={styles.input} onChangeText={(value) => setLanguage(value)}></TextInput>
                 <TextInput placeholder='Link Image Album' style={styles.input} onChangeText={(value) => setImg(value)}></TextInput>
 
-                <TouchableOpacity style={styles.button} >
+                <TouchableOpacity style={styles.button} onPress={registerMusic} >
                     <Text style={styles.textbutton}>Continue</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={registerMusic}>
-                    <Link href={'/'} style={[styles.textbutton]}> Ainda não tem conta? </Link>
+                <TouchableOpacity >
+                    <Link href={'/list'} style={[styles.textbutton]}> Vizualizar lista de musicas </Link>
                 </TouchableOpacity>
             </View>
         </View>

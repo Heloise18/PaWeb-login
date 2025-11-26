@@ -2,7 +2,7 @@
   import {useState, useEffect} from 'react';
   import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
   import { app } from '../firebaseConfig'
-  import { router } from 'expo-router';
+  import { Link, router } from 'expo-router';
   import Swal from 'sweetalert2';
   
   
@@ -40,19 +40,7 @@
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button2}>
-          <Text style={styles.textbutton2}>Forgot Password?</Text>
-        </TouchableOpacity>
-
-      </View>
-      <View style={styles.final}>
-        <TouchableOpacity style={styles.button2}>
-          <Image  source={require("../assets/images/googlepequeno.png")}></Image>
-          <Text style={{fontSize: 25, fontFamily: 'MyCustomFontName', color: " "}}>Google</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.button3}>
-          <Image  source={require("../assets/images/facebook40.png")}></Image>
-          <Text style={{fontSize: 25, fontFamily: 'MyCustomFontName', color: " "}}>Facebook</Text>
+           <Link href={'/'} style={[styles.textbutton2]}> Não tem conta? </Link>
         </TouchableOpacity>
       </View>
     </View>

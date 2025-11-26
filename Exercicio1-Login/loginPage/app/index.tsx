@@ -72,20 +72,11 @@ export default function HomeScreen() {
         <TouchableOpacity style={styles.button} onPress={signUp}>
           <Text style={styles.textbutton}>Cadastrar</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => console.log('botão clicado')}>
+
+        <TouchableOpacity style={styles.button2}>
           <Link href={'/login'} style={[styles.textbutton2]}> Já tem conta? </Link>
         </TouchableOpacity>
-      </View>
-      <View style={styles.final}>
-        <TouchableOpacity style={styles.button2}>
-          <Image  source={require("../assets/images/googlepequeno.png")}></Image>
-          <Text style={{fontSize: 25, fontFamily: 'MyCustomFontName', color: " "}}>Google</Text>
-        </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button3}>
-          <Image  source={require("../assets/images/facebook40.png")}></Image>
-          <Text style={{fontSize: 25, fontFamily: 'MyCustomFontName', color: " "}}>Facebook</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );

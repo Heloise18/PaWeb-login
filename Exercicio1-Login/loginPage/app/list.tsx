@@ -54,7 +54,10 @@ export default function list() {
                             <Text style={{ fontSize: 18, fontWeight: "600" }}>
                                 {item.name} {item.singer}
                             </Text>
-                            <Image source={item.img}/>
+                            <View>
+                                <Image source={item.img}/>
+                            </View>
+                            
 
                             <Text style={{ opacity: 0.7 }}>Duração: {item.duration}</Text>
                             <Text style={{ opacity: 0.7 }}>Genero: {item.genre}</Text>
@@ -86,7 +89,6 @@ export default function list() {
                     )}
                     />
             </View>
-
         </View>
     )
 }
